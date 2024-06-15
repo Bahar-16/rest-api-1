@@ -4,20 +4,21 @@ const app = express();
 
 const{APP_PORT,DB_URL} =require('./config');
 const routes =require("./routes");
-const mongoose = require('mongoose');
+const {default: mongoose} = require('mongoose');
 const bodyParser = require('body-parser');
 
 
 
 mongoose.connect(DB_URL).then(() => console.log('Connected!'));
 app.use(express.static(__dirname + "/public"));
-app.use("/upload",express.static("uploads"));
+app.use("/upload",express.static("upload"));
 
 
 app.use(bodyParser.urlencoded({
     extended: true,
 })
 );
+
 
 app.use(bodyParser.json())
 
